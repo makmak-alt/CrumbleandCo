@@ -742,7 +742,7 @@ body {
   <div class="w-panel active" id="tab-chat">
     <div class="w-chat" id="chatMessages"></div>
     <div class="w-input-bar">
-      <input class="w-input" id="chatInput" placeholder="Ask me anything…" onkeydown="if(event.key==='Enter')sendMsg()">
+      <input class="w-input" id="chatInput" placeholder="Pick a prompt…" onkeydown="if(event.key==='Enter')sendMsg()">
       <button class="w-send" id="sendBtn" onclick="sendMsg()">➤</button>
     </div>
   </div>
@@ -821,7 +821,7 @@ function toggleWidget() {
   if (widgetOpen && !greeted) {
     greeted = true;
     setTimeout(() => {
-      addBotMsg("Hi there! 👋 I'm your Crumble & Co assistant. I can help you **place an order**, find the perfect cookie, or **track your delivery**. What brings you in today?", [
+      addBotMsg("Hi there! 👋 I'm your Crumble & Co assistant. I can help you *Place an order*, find the perfect cookie, or *Track your delivery*. What brings you in today?", [
         "Show me what's popular 🍪",
         "I'd like to place an order",
         "Track my order 📦"
