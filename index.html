@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -433,8 +434,7 @@ body {
 }
 .track-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
-.track-result { display: none; }
-.track-result.show { display: block; }
+.track-result { display: block; min-height: 0; }
 .order-card {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(196,125,42,0.2);
@@ -1339,8 +1339,8 @@ function trackOrder() {
   const email = document.getElementById('trackEmail').value.trim().toLowerCase();
   const result = document.getElementById('trackResult');
 
-  if (!id)    { result.innerHTML = '<p style="color:rgba(245,230,204,0.5);font-size:13px;padding:10px 0">Please enter your order number.</p>'; return; }
-  if (!email) { result.innerHTML = '<p style="color:rgba(245,230,204,0.5);font-size:13px;padding:10px 0">Please enter your email address.</p>'; return; }
+  if (!id)    { result.classList.add('show'); result.innerHTML = '<p style="color:rgba(245,230,204,0.5);font-size:13px;padding:10px 0">Please enter your order number.</p>'; return; }
+  if (!email) { result.classList.add('show'); result.innerHTML = '<p style="color:rgba(245,230,204,0.5);font-size:13px;padding:10px 0">Please enter your email address.</p>'; return; }
 
   // Look up in localStorage (orders placed on this device)
   let order = null;
@@ -1353,7 +1353,8 @@ function trackOrder() {
   } catch(e) {}
 
   if (!order) {
-    result.innerHTML = '<div class="track-not-found">No order found for <strong>' + id + '</strong> with that email.<br><br>Orders can only be tracked on the device they were placed from. Check your confirmation email for your order details.</div>';
+    result.classList.add('show');
+  result.innerHTML = '<div class="track-not-found">No order found for <strong>' + id + '</strong> with that email.<br><br>Orders can only be tracked on the device they were placed from. Check your confirmation email for your order details.</div>';
     return;
   }
 
@@ -1378,6 +1379,7 @@ function trackOrder() {
       '</div></div>';
   });
 
+  result.classList.add('show');
   result.innerHTML =
     '<div class="order-card">' +
       '<div class="order-card-header">' +
